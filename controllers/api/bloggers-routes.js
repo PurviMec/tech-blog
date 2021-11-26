@@ -51,6 +51,7 @@ router.post('/', (req, res) => {
 // PUT /api/bloggers/1
 router.put('/:id', (req, res) => {
     Bloggers.update(req.body, {
+        individualHooks: true,
         where: {
             id: req.params.id
         }
