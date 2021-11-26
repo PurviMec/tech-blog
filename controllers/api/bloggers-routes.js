@@ -3,7 +3,9 @@ const {Bloggers} = require('../../models');
 
 // GET /api/bloggers
 router.get('/', (req, res) => {
-    Bloggers.findAll()
+    Bloggers.findAll({
+        attributes: { exclude: ['password'] }
+    })
         .then(dbBloggersData => res.json(dbBloggersData))
         .catch(err => {
             console.log(err);
@@ -14,6 +16,7 @@ router.get('/', (req, res) => {
 // GET /api/bloggers/1
 router.get('/:id', (req, res) => {
     Bloggers.findOne({
+        attributes: { exclude: ['password'] },
         where: {
             id: req.params.id
         }
