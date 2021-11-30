@@ -1,3 +1,4 @@
 const Bloggers = require('./Bloggers');
+const Blogs = require('./Blogs');
 
-module.exports = {Bloggers};
+module.exports = {Bloggers, Blogs};
