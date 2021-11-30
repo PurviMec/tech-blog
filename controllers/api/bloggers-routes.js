@@ -48,6 +48,25 @@ router.post('/', (req, res) => {
     })
 });
 
+router.post('/login', (req, res) => {
+    Bloggers.findOne({
+        where: {
+            email: req.body.email
+        }
+    }).then(dbBloggersData => {
+        if(!dbBloggersData){
+            res.status(400).json({ message: 'No blogger with this email is found'})
+            return;
+        }
+        const validPassword = dbBloggersData.checkPassword(req.body.password);
+        if(!validPassword){
+            res.status(400).json({ message: 'Incorrect password!' });
+            return;
+        }
+        res.json({ bloggers: dbBloggersData, message: 'You are now logged in! '});
+    });
+});
+
 // PUT /api/bloggers/1
 router.put('/:id', (req, res) => {
     Bloggers.update(req.body, {
