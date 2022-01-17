@@ -1,5 +1,5 @@
 const router = require('express').Router();
-const { Blog, Bloggers } = require('../../models');
+const { Blog, Bloggers, Comment } = require('../../models');
 
 // PATH : http://localhost:3001/api/blog
 router.get('/', (req, res) => {
@@ -8,6 +8,14 @@ router.get('/', (req, res) => {
         attributes: ['id', 'title', 'content', 'created_at'],
         order: [['created_at', 'DESC']],
         include: [
+            {
+                model: Comment,
+                attributes: ['id', 'comment_text', 'bloggers_id', 'blog_id', 'created_at'],
+                include: {
+                    model: Bloggers,
+                    attributes: ['username']
+                }
+            },
             {
                 model: Bloggers,
                 attributes: ['username']
@@ -29,6 +37,14 @@ router.get('/:id', (req, res) => {
       },
       attributes: ['id', 'title', 'content', 'created_at'],
       include: [
+        {
+          model: Comment,
+          attributes: ['id', 'comment_text','created_at'],
+          include: {
+              model: Blog,
+              attributes: ['title']
+          }
+        },
         {
           model: Bloggers,
           attributes: ['username']
