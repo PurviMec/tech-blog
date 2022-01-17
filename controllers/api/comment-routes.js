@@ -16,14 +16,4 @@ router.post('/', (req, res) => {
       
 });
 
-// http://localhost:3001/api/comment
-router.get('/', (req, res) => {
-
-});
-
-// http://localhost:3001/api/comment/:id
-router.delete('/:id', (req, res) => {
-
-});
-
 module.exports = router;
