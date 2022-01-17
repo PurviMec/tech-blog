@@ -1,4 +1,12 @@
 const Bloggers = require('./Bloggers');
-const Blogs = require('./Blogs');
+const Blog = require('./Blog');
 
-module.exports = {Bloggers, Blogs};
+Bloggers.hasMany(Blog, {
+    foreignKey: 'bloggers_id'
+});
+
+Blog.belongsTo(Bloggers, {
+    foreignKey: 'bloggers_id'
+});
+
+module.exports = {Bloggers, Blog};

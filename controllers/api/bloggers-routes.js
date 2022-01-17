@@ -13,7 +13,7 @@ router.get('/', (req, res) => {
         })
 });
 
-// GET /api/bloggers/1
+// GET /api/bloggers/:id
 router.get('/:id', (req, res) => {
     Bloggers.findOne({
         attributes: { exclude: ['password'] },
