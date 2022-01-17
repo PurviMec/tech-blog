@@ -21,13 +21,13 @@ router.get("/",withAuth, (req, res) => {
       });
   });
 
-router.get("/new", (req, res) => {
+router.get("/new",withAuth, (req, res) => {
     res.render("new-blog", {
         layout: "dashboard"
     });
 });
   
-router.get(":id", withAuth, (req, res) => {
+router.get("/edit/:id", withAuth, (req, res) => {
     Blog.findByPk(req.params.id)
         .then(dbBlogData => {
             if (dbBlogData) {

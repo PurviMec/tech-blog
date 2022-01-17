@@ -7,7 +7,7 @@ const editFormHandler = async function(e) {
     const blogId = document.getElementById('post-id')
 
     fetch("/api/blog/" + blogId.value, {
-        method: "put", 
+        method: "PUT", 
         body: JSON.stringify({
             title: titleEl.value,
             body: bodyEl.value

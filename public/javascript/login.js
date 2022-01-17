@@ -4,7 +4,7 @@ const loginFormHandler = async function(e) {
     const usernameEl = document.querySelector("#username-input-login");
     const passwordEl = document.querySelector("#password-input-login");
     fetch("/api/bloggers/login", {
-      method: "post",
+      method: 'POST',
       body: JSON.stringify({
         username: usernameEl.value,
         password: passwordEl.value
@@ -17,4 +17,5 @@ const loginFormHandler = async function(e) {
       .catch(err => console.log(err));
   };
   
-  document.querySelector("#login-form").addEventListener("submit", loginFormHandler);
+  document.querySelector("#login-form")
+  .addEventListener("submit", loginFormHandler);

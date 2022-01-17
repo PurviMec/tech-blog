@@ -1,6 +1,6 @@
 function logout() {
     fetch("/api/bloggers/logout", {
-      method: "post",
+      method: 'POST',
       headers: { "Content-Type": "application/json" }
     })
       .then(function() {

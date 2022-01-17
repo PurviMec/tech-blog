@@ -1,6 +1,7 @@
 const deletePostHandler = async function (e) {
     console.log('e');
     e.preventDefault();
+    const blogId = document.getElementById('post-id')
 
     fetch('/api/blog', + blogId.value, {
         method: 'delete'

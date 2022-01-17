@@ -1,12 +1,11 @@
 const router = require('express').Router();
 const { Comment } = require('../../models');
+const withAuth = require("../../utils/auth");
 
 // http://localhost:3001/api/comment
 router.post('/', (req, res) => {
     Comment.create({
-        comment_text: req.body.comment_text,
-        bloggers_id: req.body.bloggers_id,
-        blog_id: req.body.blog_id
+        ...req.body, bloggersId: req.session.bloggersId
     })
         .then(dbCommentData => res.json(dbCommentData))
         .catch(err => {

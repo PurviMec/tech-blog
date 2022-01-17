@@ -4,25 +4,26 @@ const { Blog, Bloggers, Comment } = require('../models');
 
 router.get('/', (req, res) => {
     Blog.findAll({
-        attributes: ['id', 'title', 'content', 'created_at'],
-        order: [['created_at', 'DESC']],
+       //attributes: ['id', 'title', 'content', 'created_at'],
+        //order: [['created_at', 'DESC']],
         include: [
-            {
-                model: Comment,
-                attributes: ['id', 'comment_text', 'bloggers_id', 'blog_id', 'created_at'],
-                include: {
-                    model: Bloggers,
-                    attributes: ['username']
-                }
-            },
-            {
-                model: Bloggers,
-                attributes: ['username']
-            }
+          Bloggers
+            // {
+            //     model: Comment,
+            //     attributes: ['id', 'comment_text', 'bloggers_id', 'blog_id', 'created_at'],
+            //     include: {
+            //         model: Bloggers,
+            //         attributes: ['username']
+            //     }
+            // },
+            // {
+            //     model: Bloggers,
+            //     attributes: ['username']
+            // }
         ]
     })
         .then(dbBlogData => {
-            console.log(dbBlogData[0])
+            //console.log(dbBlogData[0])
             const blogs = dbBlogData.map(blog => blog.get({ plain: true }));
             res.render('all-blogs', { blogs });
         })
@@ -32,27 +33,36 @@ router.get('/', (req, res) => {
         });
 });
 
-router.get('/:id', (req, res) => {
-    Blog.findOne({
-      where: {
-        id: req.params.id
-      },
-      attributes: ['id', 'title', 'content', 'created_at'],
-      include: [
-        {
-          model: Comment,
-          attributes: ['id', 'comment_text','created_at'],
-          include: {
-              model: Blog,
-              attributes: ['title']
-          }
-        },
-        {
-          model: Bloggers,
-          attributes: ['username']
-        }
-      ]
-    })
+router.get('/blog/:id', (req, res) => {
+  Blog.findByPk(req.params.id, {
+    include: [
+      Bloggers,
+      {
+        model: Comment,
+        include: [Bloggers]
+      }
+    ]
+  })
+    // Blog.findOne({
+    //   where: {
+    //     id: req.params.id
+    //   },
+    //   attributes: ['id', 'title', 'content', 'created_at'],
+    //   include: [
+    //     {
+    //       model: Comment,
+    //       attributes: ['id', 'comment_text','created_at'],
+    //       include: {
+    //           model: Blog,
+    //           attributes: ['title']
+    //       }
+    //     },
+    //     {
+    //       model: Bloggers,
+    //       attributes: ['username']
+    //     }
+    //   ]
+    // })
       .then(dbBlogData => {
         if(dbBlogData) {
             const blogs = dbBlogData.get({ plain: true });

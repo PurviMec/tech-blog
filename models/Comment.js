@@ -11,24 +11,28 @@ Comment.init(
             primaryKey: true,
             autoIncrement: true
         },
-        comment_text: {
+        body: {
             type: DataTypes.STRING,
-            allowNull: false,
-        },
-        bloggers_id: {
-            type: DataTypes.INTEGER,
-            references: {
-                model: 'bloggers',
-                key: 'id'
-            }
-        },
-        blog_id: {
-            type: DataTypes.INTEGER,
-            references: {
-                model: 'blog',
-                key: 'id'
-            }
+            allowNull: false
         }
+        // comment_text: {
+        //     type: DataTypes.STRING,
+        //     allowNull: false,
+        // },
+        // bloggers_id: {
+        //     type: DataTypes.INTEGER,
+        //     references: {
+        //         model: 'bloggers',
+        //         key: 'id'
+        //     }
+        // },
+        // blog_id: {
+        //     type: DataTypes.INTEGER,
+        //     references: {
+        //         model: 'blog',
+        //         key: 'id'
+        //     }
+        // }
     },
     {
         sequelize,

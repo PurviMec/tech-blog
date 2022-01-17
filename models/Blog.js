@@ -15,17 +15,21 @@ Blog.init(
         type: DataTypes.STRING,
         allowNull: false
       },
-      content: {
+      body: {
         type: DataTypes.STRING,
-        allowNull: false,
-      },
-      bloggers_id: {
-        type: DataTypes.INTEGER,
-        references: {
-          model: 'bloggers',
-          key: 'id'
-        }
+        allowNull: false
       }
+      // content: {
+      //   type: DataTypes.STRING,
+      //   allowNull: false,
+      // },
+      // bloggers_id: {
+      //   type: DataTypes.INTEGER,
+      //   references: {
+      //     model: 'bloggers',
+      //     key: 'id'
+      //   }
+      // }
     },
     {
       sequelize,

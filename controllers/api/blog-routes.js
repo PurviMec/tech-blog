@@ -1,8 +1,9 @@
 const router = require('express').Router();
 const { Blog, Bloggers, Comment } = require('../../models');
+const withAuth = require("../../utils/auth");
 
 // PATH : http://localhost:3001/api/blog
-router.get('/', (req, res) => {
+router.get('/',withAuth,(req, res) => {
     console.log('============');
     Blog.findAll({
         attributes: ['id', 'title', 'content', 'created_at'],
@@ -64,11 +65,11 @@ router.get('/:id', (req, res) => {
       });
 });
 
-router.post('/', (req, res) => {
+router.post('/',withAuth, (req, res) => {
+    const body = req.body;
+    console.log(req.session.bloggersId)
     Blog.create({
-      title: req.body.title,
-      content: req.body.content,
-      bloggers_id: req.body.bloggers_id
+      ...body, bloggersId: req.session.bloggersId
     })
       .then(dbBlogData => res.json(dbBlogData))
       .catch(err => {
@@ -77,11 +78,9 @@ router.post('/', (req, res) => {
       });
 });
 
-router.put('/:id', (req, res) => {
-    Blog.update(
-      {
-        title: req.body.title
-      },
+router.put('/:id',withAuth, (req, res) => {
+  console.log(req.body, req.params.id)
+    Blog.update(req.body,
       {
         where: {
           id: req.params.id
@@ -101,7 +100,7 @@ router.put('/:id', (req, res) => {
       });
 });
   
-router.delete('/:id', (req, res) => {
+router.delete('/:id',withAuth, (req, res) => {
     Blog.destroy({
       where: {
         id: req.params.id
