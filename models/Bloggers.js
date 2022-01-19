@@ -52,7 +52,7 @@ Bloggers.init(
         timestamps: false,
         freezeTableName: true,
         underscored: true,
-        modelName: 'bloggers'
+        modelName: 'Bloggers'
     }
 );
 
