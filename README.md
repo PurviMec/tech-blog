@@ -30,7 +30,9 @@
 2. Using the above installed software test the following URLs to test the APIs
 
 ## Photos
-
+![Screen Shot 2022-01-18 at 10 03 21 PM](https://user-images.githubusercontent.com/86253830/150057243-10067570-ac7c-4677-baa5-1f1f3ec66402.png)
+![Screen Shot 2022-01-18 at 10 05 04 PM](https://user-images.githubusercontent.com/86253830/150057250-11a55210-1443-41ef-90d4-0e126ea40e81.png)
+![Screen Shot 2022-01-18 at 10 06 20 PM](https://user-images.githubusercontent.com/86253830/150057266-114a1850-2bca-48d4-a8af-9ce5e8100109.png)
 
 ## Contributors
 ### Please feel free to contact us with any questions
